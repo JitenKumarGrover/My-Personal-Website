@@ -173,50 +173,47 @@ AOS.init({
 	};
 	scrollWindow();
 
+	function runExperienceCounter() {
+		var start = new Date(2021, 6); // July 2021 (month is 0-indexed)
+		var now = new Date();
+		var years = now.getFullYear() - start.getFullYear();
+		var monthDiff = now.getMonth() - start.getMonth();
+		if (monthDiff < 0) {
+			years--;
+			monthDiff += 12;
+		}
+		var months = monthDiff;
 
+		$('.years_value').each(function () {
+			var $this = $(this);
+			$this.animateNumber({ number: years }, 1200);
+		});
+		$('.months_value').each(function () {
+			var $this = $(this);
+			$this.animateNumber({ number: months }, 1200);
+		});
+	}
 
 	var counter = function () {
-
+		var triggered = false;
 		$('#section-counter, .hero-wrap, .ftco-counter, .ftco-about').waypoint(function (direction) {
-
-			if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
-				var start = new Date(2021, 6); // July 2021 (month is 0-indexed)
-				var now = new Date();
-				var years = now.getFullYear() - start.getFullYear();
-				var monthDiff = now.getMonth() - start.getMonth();
-				if (monthDiff < 0) {
-					years--;
-					monthDiff += 12;
-				}
-				var months = monthDiff;
-				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-				$('.years_value').each(function () {
-					var $this = $(this),
-						num = years;
-					$this.animateNumber(
-						{
-							number: num,
-							numberStep: comma_separator_number_step
-						}, 2000
-					);
-				});
-				$('.months_value').each(function () {
-					var $this = $(this),
-						num = months;
-					$this.animateNumber(
-						{
-							number: num,
-							numberStep: comma_separator_number_step
-						}, 2000
-					);
-				});
+			if (direction === 'down' && !triggered) {
+				runExperienceCounter();
+				triggered = true;
 			}
-
 		}, { offset: '95%' });
 
-	}
+		// Fallback for mobile: trigger on page load if not already triggered
+		if (/Mobi|Android/i.test(navigator.userAgent)) {
+			setTimeout(function () {
+				if (!triggered) {
+					runExperienceCounter();
+					triggered = true;
+				}
+			}, 1000);
+		}
+	};
 	counter();
-
 
 	var contentWayPoint = function () {
 		var i = 0;
