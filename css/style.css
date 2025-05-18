@@ -12061,12 +12061,14 @@ h5,
   color: #fff;
 }
 
-.split-color-k {
-  background: linear-gradient(to right, #fff 50%, #000 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+@media (min-width: 991.98px) {
+  .split-color-k {
+    background: linear-gradient(to right, #fff 50%, #000 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .hero-wrap {
