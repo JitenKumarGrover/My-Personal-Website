@@ -174,7 +174,7 @@ AOS.init({
 	scrollWindow();
 
 	function runExperienceCounter() {
-		var start = new Date(2021, 6); // July 2021 (month is 0-indexed)
+		var start = new Date(2021, 6, 5); // July 5, 2021 (month is 0-indexed)
 		var now = new Date();
 		var years = now.getFullYear() - start.getFullYear();
 		var monthDiff = now.getMonth() - start.getMonth();
