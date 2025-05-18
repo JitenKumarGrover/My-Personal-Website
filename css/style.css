@@ -12071,6 +12071,16 @@ h5,
   }
 }
 
+@media (max-width: 991.98px) {
+  .awake .split-color-k {
+    background: linear-gradient(to right, #fff 50%, #000 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
 .hero-wrap {
   width: 100%;
   height: 100%;
